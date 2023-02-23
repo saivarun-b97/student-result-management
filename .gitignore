@@ -1,0 +1,11 @@
+# ignore node modules
+node_modules
+
+# ignore build files
+dist
+
+# ignore env files
+**/.env
+
+# ignore desktop services store files
+**/.DS_Store
