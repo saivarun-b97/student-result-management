@@ -1,3 +1,4 @@
+import cors from "cors";
 import express, { Application } from "express";
 import process from "node:process";
 import "reflect-metadata";
@@ -33,6 +34,9 @@ async function bootUpServer(): Promise<void> {
 
   // Resolve all pre loads
   await Promise.all(serverPreLoads.map((preLoad) => preLoad()));
+
+  // Enable CORS
+  app.use(cors());
 
   // Attach json body parser middleware
   app.use(express.json());
