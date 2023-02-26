@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Result } from "../models/result";
+import { Result, Score } from "../models/result";
 
 /**
  * Result service class for handling result related CRUD operations
@@ -62,14 +62,16 @@ export default class ResultService {
     if (!(studentId && courseId && score))
       return this.res.status(400).send("Deficient result data supplied");
 
+    if (!(score in Score)) return this.res.status(409).send("Score is invalid");
+
     // Check database for duplicate records
     const resultExists = await Result.find({ where: { studentId, courseId, score } });
     if (resultExists.length) return this.res.status(409).send("Duplicate result supplied");
 
-    // Create new record
-    const result = await Result.create({ studentId, courseId, score }).save();
-    const newResult = await Result.findOne({ where: { id: result.id } });
+    // Save new record
+    const { id } = await Result.create({ studentId, courseId, score }).save();
+    const result = await Result.findOne({ where: { id } });
 
-    return this.res.json(newResult);
+    return this.res.json(result);
   }
 }

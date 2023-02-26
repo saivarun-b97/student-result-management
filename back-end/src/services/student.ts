@@ -62,12 +62,27 @@ export default class StudentService {
     if (!(firstName && lastName && dob))
       return this.res.status(400).send("Deficient student data supplied");
 
+    const dobRegex = /^\d{4}-\d{2}-\d{2}$/;
+    if (!dobRegex.test(dob)) return this.res.status(409).send("DOB format is invalid");
+
+    if (Date.parse(dob) > new Date().getTime())
+      return this.res.status(409).send("DOB has to be in past");
+
+    // Transform incoming data
+    const student = Student.create({
+      firstName: firstName.toUpperCase(),
+      lastName: lastName.toUpperCase(),
+      dob,
+    });
+
     // Check database for duplicate records
-    const studentExists: Student[] = await Student.find({ where: { firstName, lastName, dob } });
+    const studentExists: Student[] = await Student.find({
+      where: { firstName: student.firstName, lastName: student.lastName, dob: student.dob },
+    });
     if (studentExists.length) return this.res.status(409).send("Duplicate student supplied");
 
-    // Create new record
-    const student: Student = await Student.create({ firstName, lastName, dob }).save();
+    // Save new record
+    await student.save();
 
     return this.res.json(student);
   }

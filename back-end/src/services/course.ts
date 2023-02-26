@@ -61,12 +61,15 @@ export default class CourseService {
     const { name }: Partial<Course> = this.req.body;
     if (!name) return this.res.status(400).send("Deficient course data supplied");
 
+    // Transform incoming data
+    const course = Course.create({ name: name.toUpperCase() });
+
     // Check database for duplicate records
-    const courseExists = await Course.find({ where: { name } });
+    const courseExists = await Course.find({ where: { name: course.name } });
     if (courseExists.length) return this.res.status(409).send("Duplicate course supplied");
 
-    // Create new record
-    const course = await Course.create({ name: this.req.body.name }).save();
+    // Save new record
+    await course.save();
 
     return this.res.json(course);
   }

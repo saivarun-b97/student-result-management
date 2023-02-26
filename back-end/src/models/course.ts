@@ -29,7 +29,7 @@ export class Course extends BaseEntity {
    *
    * @type {string}
    */
-  @Column()
+  @Column({ unique: true })
   name: string;
 
   /**

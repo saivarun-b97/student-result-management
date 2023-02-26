@@ -41,11 +41,11 @@ export class Student extends BaseEntity {
   lastName: string;
 
   /**
-   * Date of birth of student in DD/MM/YYYY format
+   * Date of birth of student in YYYY-MM-DD format
    *
    * @type {string}
    */
-  @Column()
+  @Column({ type: "date" })
   dob: string;
 
   /**
