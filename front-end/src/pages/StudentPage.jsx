@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import { useDispatch, useSelector } from "react-redux";
 import Student from "../components/Student";
 import { addStudent, loadStudents } from "../store/student-actions";
@@ -55,12 +54,14 @@ export default function StudentPage() {
           type={"text"}
           name={"firstName"}
           value={firstNameValue}
+          placeholder="First Name"
           onChange={updateFirstName}
         ></input>
         <input
           type={"text"}
           name={"lastName"}
           value={lastNameValue}
+          placeholder="Last Name"
           onChange={updateLastName}
         ></input>
         <input type={"date"} name={"dob"} value={dobValue} onChange={updateDob}></input>

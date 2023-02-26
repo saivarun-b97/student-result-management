@@ -63,12 +63,13 @@ export default class ResultService {
       return this.res.status(400).send("Deficient result data supplied");
 
     // Check database for duplicate records
-    const studentExists = await Result.find({ where: { studentId, courseId, score } });
-    if (studentExists.length) return this.res.status(409).send("Duplicate result supplied");
+    const resultExists = await Result.find({ where: { studentId, courseId, score } });
+    if (resultExists.length) return this.res.status(409).send("Duplicate result supplied");
 
     // Create new record
-    const student = await Result.create({ studentId, courseId, score }).save();
+    const result = await Result.create({ studentId, courseId, score }).save();
+    const newResult = await Result.findOne({ where: { id: result.id } });
 
-    return this.res.json(student);
+    return this.res.json(newResult);
   }
 }
