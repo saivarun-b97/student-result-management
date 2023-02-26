@@ -1,9 +1,9 @@
 {
   "name": "front-end",
   "version": "0.1.0",
-  "private": true,
   "description": "Student Result Management Front-End Application",
   "author": "Saivarun B <saivarun.b97@gmail.com>",
+  "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
     "react": "^18.2.0",

@@ -1,22 +1,13 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Course from "../components/Course";
-import { addCourse, loadCourses } from "../store/course-actions";
-
-let initialLoad = true;
+import { addCourse } from "../store/course-actions";
 
 export default function CoursePage() {
   const dispatch = useDispatch();
   const { items: courses } = useSelector((store) => store.course);
 
-  useEffect(() => {
-    if (initialLoad) {
-      initialLoad = false;
-      dispatch(loadCourses());
-    }
-  }, [dispatch]);
-
-  const [courseNameValue, setCourseName] = useState("");
+  const [courseNameValue, setCourseName] = useState();
 
   const updateCourseName = (event) => {
     setCourseName(event.target.value);

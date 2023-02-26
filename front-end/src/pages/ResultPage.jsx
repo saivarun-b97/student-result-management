@@ -1,9 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Result from "../components/Result";
-import { addResult, loadResults } from "../store/result-actions";
-
-let initialLoad = true;
+import { addResult } from "../store/result-actions";
 
 export default function ResultPage() {
   const dispatch = useDispatch();
@@ -13,16 +11,9 @@ export default function ResultPage() {
   const courses = useSelector((state) => state.course.items);
   const scores = ["A", "B", "C", "D", "E", "F"];
 
-  useEffect(() => {
-    if (initialLoad) {
-      initialLoad = false;
-      dispatch(loadResults());
-    }
-  });
-
-  const [studentId, setStudentId] = useState(students[0].id);
-  const [courseId, setCourseId] = useState(courses[0].id);
-  const [score, setScore] = useState(scores[0]);
+  const [studentId, setStudentId] = useState();
+  const [courseId, setCourseId] = useState();
+  const [score, setScore] = useState();
 
   const selectStudent = (event) => {
     setStudentId(event.target.value);

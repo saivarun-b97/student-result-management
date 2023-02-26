@@ -1,34 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Student from "../components/Student";
-import { addStudent, loadStudents } from "../store/student-actions";
-
-let initalLoad = true;
+import { addStudent } from "../store/student-actions";
 
 export default function StudentPage() {
   const dispatch = useDispatch();
   const { items: students } = useSelector((store) => store.student);
 
-  useEffect(() => {
-    if (initalLoad) {
-      initalLoad = false;
-      dispatch(loadStudents());
-    }
-  }, [dispatch]);
-
-  const [firstNameValue, setFirstName] = useState("");
+  const [firstNameValue, setFirstName] = useState();
 
   const updateFirstName = (event) => {
     setFirstName(event.target.value);
   };
 
-  const [lastNameValue, setLastName] = useState("");
+  const [lastNameValue, setLastName] = useState();
 
   const updateLastName = (event) => {
     setLastName(event.target.value);
   };
 
-  const [dobValue, setDob] = useState("");
+  const [dobValue, setDob] = useState();
 
   const updateDob = (event) => {
     setDob(event.target.value);
