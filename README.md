@@ -1,10 +1,10 @@
-# Student-Result-Management
+# Student Result Management
 
 Application to manage Courses, Students and Results
 
 ## Description
 
-- Full Stack Web Application for handling ***Student-Result-Management***. 
+- Full Stack Web Application for ***Student Result Management***. 
 - Equipped with adding new records and error validations.
 
 ## Getting Started
@@ -39,21 +39,26 @@ Installation is documented for MacOS machine with M1.
   git clone git@github.com:saivarun-b97/student-result-management.git
   ```
 
-### Back-End
+### Back End
 
-- On a new terminal session, Change active directory to `back-end` from cloned repositiory root
+- On a new terminal session, Change active directory to ***back-end*** from cloned repositiory root
 
   ```bash
   cd back-end
   ```
 
-- Copy *.env.example* file to *.env*
+- Copy ***.env.example*** file as ***.env***
 
   ```bash
   cp .env.example .env
   ```
 
-- Add `DB_USER` and `DB_PASWORD` variable values to *.env* file
+- Add `DB_USER` and `DB_PASWORD` variable values to ***.env*** file
+
+  ```
+  DB_USER='username'
+  DB_PASSWORD='password'
+  ```
 
 - Install backend dependencies
 
@@ -73,9 +78,9 @@ Installation is documented for MacOS machine with M1.
   npm start
   ```
 
-### Front-End
+### Front End
 
-- On a new terminal session, Change active directory to `front-end` from cloned repositiory root
+- On a new terminal session, Change active directory to ***front-end*** from cloned repositiory root
 
   ```bash
   cd front-end
