@@ -4,7 +4,7 @@ import useInput from "../hooks/use-input";
 import "../index.css";
 import { addResource } from "../store/actions";
 
-export default function ResultForm(props) {
+export default function ResultForm() {
   const dispatch = useDispatch();
 
   const students = useSelector((state) => state.student.items);
@@ -40,44 +40,61 @@ export default function ResultForm(props) {
   const formSubmitHandler = (event) => {
     event.preventDefault();
 
-    dispatch(addResource(RESOURCE.RESULT, { studentIdValue, courseIdValue, scoreValue }));
+    dispatch(
+      addResource(RESOURCE.RESULT, {
+        studentId: studentIdValue,
+        courseId: courseIdValue,
+        score: scoreValue,
+      })
+    );
   };
 
   return (
     <>
-      <h1>Assign Result</h1>
+      <h3>Assign New Result</h3>
       <form onSubmit={formSubmitHandler}>
-        <div>
-          <label>Student</label>
-          <select name="studentId" onBlur={onStudentIdBlur} onChange={onStudentIdChange}>
-            {students.map((s, i) => (
-              <option key={i} value={s.id}>
-                {s.firstName} {s.lastName}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <label>Course</label>
-          <select name="courseId" onBlur={onCourseIdBlur} onChange={onCourseIdChange}>
-            {courses.map((c, i) => (
-              <option key={i} value={c.id}>
-                {c.name}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <label>Score</label>
-          <select name="score" onBlur={onScoreBlur} onChange={onScoreChange}>
-            {scores.map((s, i) => (
-              <option key={i} value={s}>
-                {s}
-              </option>
-            ))}
-          </select>
-        </div>
-        <button type="submit">Submit</button>
+        <label>Student:</label>
+        <select
+          name="studentId"
+          onBlur={onStudentIdBlur}
+          onChange={onStudentIdChange}
+          className={studentIdIsTouched && !studentIdIsValid ? "error" : ""}
+        >
+          {students.map((s, i) => (
+            <option key={i} value={s.id}>
+              {s.firstName} {s.lastName}
+            </option>
+          ))}
+        </select>
+        <label>Course:</label>
+        <select
+          name="courseId"
+          onBlur={onCourseIdBlur}
+          onChange={onCourseIdChange}
+          className={courseIdIsTouched && !courseIdIsValid ? "error" : ""}
+        >
+          {courses.map((c, i) => (
+            <option key={i} value={c.id}>
+              {c.name}
+            </option>
+          ))}
+        </select>
+        <label>Score:</label>
+        <select
+          name="score"
+          onBlur={onScoreBlur}
+          onChange={onScoreChange}
+          className={scoreIsTouched && !scoreIsValid ? "error" : ""}
+        >
+          {scores.map((s, i) => (
+            <option key={i} value={s}>
+              {s}
+            </option>
+          ))}
+        </select>
+        <button type="submit" disabled={!(studentIdIsValid && courseIdIsValid && scoreIsValid)}>
+          SAVE
+        </button>
       </form>
     </>
   );

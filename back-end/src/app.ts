@@ -47,7 +47,7 @@ async function bootUpServer(): Promise<void> {
   app.use("/result", ResultRouter);
 
   // Start the server
-  app.listen(process.env.PORT, () => console.log(`[srm-be] started server: ${SERVER_ADDRESS}`));
+  app.listen(process.env.PORT, () => console.info(`[srm-be] started server: ${SERVER_ADDRESS}`));
 }
 
 /**

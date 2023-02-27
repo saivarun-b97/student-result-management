@@ -7,7 +7,7 @@ import HomePage from "./pages/HomePage";
 import ResultPage from "./pages/ResultPage";
 import RootPage from "./pages/RootPage";
 import StudentPage from "./pages/StudentPage";
-import { loadResource } from "./store/actions";
+import { loadResources } from "./store/actions";
 
 const router = createBrowserRouter([
   {
@@ -31,7 +31,7 @@ export default function App() {
   useEffect(() => {
     if (initialLoad) {
       initialLoad = false;
-      dispatch(loadResource());
+      dispatch(loadResources());
     }
   }, [dispatch]);
 

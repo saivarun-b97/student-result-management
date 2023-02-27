@@ -3,20 +3,18 @@ import "../index.css";
 
 export default function NavigationBar() {
   return (
-    <header className="header">
-      <nav>
-        <ul className="list">
-          <li>
-            <Link to="/course">Course Page</Link>
-          </li>
-          <li>
-            <Link to="/student">Student Page</Link>
-          </li>
-          <li>
-            <Link to="/result">Result Page</Link>
-          </li>
-        </ul>
-      </nav>
-    </header>
+    <nav>
+      <ul>
+        <li>
+          <Link to="/course">Course</Link>
+        </li>
+        <li>
+          <Link to="/student">Student</Link>
+        </li>
+        <li>
+          <Link to="/result">Result</Link>
+        </li>
+      </ul>
+    </nav>
   );
 }

@@ -1,34 +1,140 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
-    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  font-family: Arial, sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  font-size: 22.5px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+nav {
+  background-color: #f2f2f2;
+  padding: 20px;
+  width: 200px;
+  height: 100%;
+  top: 66px;
+  left: 0;
+  position: fixed;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 50px 0 0 0;
+}
+
+nav li {
+  margin-bottom: 10px;
+  border: 2.5px solid #333;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+form button {
+  border: 2px solid #333;
+  padding: 9px 20px;
+  color: darkcyan;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+nav li:hover,
+form button:hover {
+  background-color: #ccc;
+}
+
+nav li:active,
+form button:active {
+  background-color: #333;
+}
+
+nav li a {
+  text-decoration: none;
+  color: darkcyan;
+  display: block;
+}
+
+nav li a:active,
+form button:active {
+  color: #ccc;
 }
 
 main {
-  margin: 2rem auto;
+  float: right;
+  width: 80%;
+  margin-top: 65px;
+}
+
+h3 {
+  margin: 25px auto;
   text-align: center;
 }
 
-.header {
-  max-width: 60rem;
-  margin: auto;
-  padding: 2rem;
+form {
   justify-content: center;
-  float: left;
+  margin: 25px auto;
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
 }
 
-.list {
-  gap: 1rem;
-  list-style-type: none;
+form label {
+  display: block;
+  margin: 5px 10px 5px 0;
 }
 
-.list a {
-  text-decoration: none;
-  color: var(--color-primary-400);
+form input[type="text"],
+form input[type="email"],
+form select {
+  vertical-align: middle;
+  margin: 5px 10px 5px 0;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+}
+
+form button:disabled {
+  background: #999;
+  color: #555;
+  cursor: not-allowed;
+}
+
+table {
+  border-collapse: collapse;
+  width: 75%;
+  margin: 20px auto;
+  border: #333 2pt solid;
+}
+
+th,
+td {
+  text-align: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  overflow: auto;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+.error {
+  border: 1px solid red !important;
+}
+
+.error-page {
+  font-size: 50px;
+  font-weight: 900;
+  position: absolute;
+  top: 45%;
+  left: 35%;
 }

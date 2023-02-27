@@ -11,6 +11,10 @@ export default function CoursePage() {
       <CourseForm />
       <h3>List of Courses</h3>
       <table>
+        <tr>
+          <th>Sl. No.</th>
+          <th>Course Name</th>
+        </tr>
         {courses.map((c, i) => (
           <Course key={c.id} index={i} name={c.name} />
         ))}

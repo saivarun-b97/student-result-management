@@ -4,9 +4,12 @@ import "../index.css";
 export default function ErrorPage() {
   return (
     <>
-      <NavigationBar />
+      <header>
+        <div>Student Result Management</div>
+        <NavigationBar />
+      </header>
       <main>
-        <h1>Sorry! page not found</h1>
+        <div className="error-page">Sorry! Page Not Found</div>
       </main>
     </>
   );

@@ -3,49 +3,24 @@ import { courseActions } from "./course-slice";
 import { resultActions } from "./result-slice";
 import { studentActions } from "./student-slice";
 
-export function loadResource(resource) {
+export function loadResources() {
   return async (dispatch) => {
-    if (!resource) {
-      const [getCourseRes, getStudentRes, getResultRes] = await Promise.all(
-        Object.values(RESOURCE).map((r) => fetch(`${BE_BASE_URL}/${r}`))
-      );
+    const [getCourseRes, getStudentRes, getResultRes] = await Promise.all(
+      Object.values(RESOURCE).map((r) => fetch(`${BE_BASE_URL}/${r}`))
+    );
 
-      if (!(getCourseRes.ok && getStudentRes.ok && getResultRes.ok))
-        throw new Error(`Could not retrieve all resources`);
+    if (!(getCourseRes.ok && getStudentRes.ok && getResultRes.ok))
+      throw new Error(`Could not retrieve all resources`);
 
-      const [courses, students, results] = await Promise.all([
-        getCourseRes.json(),
-        getStudentRes.json(),
-        getResultRes.json(),
-      ]);
+    const [courses, students, results] = await Promise.all([
+      getCourseRes.json(),
+      getStudentRes.json(),
+      getResultRes.json(),
+    ]);
 
-      dispatch(courseActions.load(courses));
-      dispatch(studentActions.load(students));
-      dispatch(resultActions.load(results));
-    } else {
-      if (!Object.values(RESOURCE).includes(resource))
-        throw new Error("Supplied invalid resource to load");
-
-      const getResourceRes = await fetch(`${BE_BASE_URL}/${resource}`);
-
-      if (!getResourceRes.ok) throw new Error(`Could not retrieve ${resource}s`);
-
-      const retrievedResource = await getResourceRes.json();
-
-      switch (resource) {
-        case RESOURCE.COURSE:
-          dispatch(courseActions.load(retrievedResource));
-          break;
-        case RESOURCE.STUDENT:
-          dispatch(studentActions.load(retrievedResource));
-          break;
-        case RESOURCE.RESULT:
-          dispatch(resultActions.load(retrievedResource));
-          break;
-        default:
-          break;
-      }
-    }
+    dispatch(courseActions.load(courses));
+    dispatch(studentActions.load(students));
+    dispatch(resultActions.load(results));
   };
 }
 

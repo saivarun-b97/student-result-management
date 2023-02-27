@@ -5,7 +5,10 @@ import "../index.css";
 export default function RootPage() {
   return (
     <>
-      <NavigationBar />
+      <header>
+        <div>Student Result Management</div>
+        <NavigationBar />
+      </header>
       <main>
         <Outlet />
       </main>

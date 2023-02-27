@@ -12,6 +12,12 @@ export default function StudentPage() {
       <StudentForm />
       <h3>List of Students</h3>
       <table>
+        <tr>
+          <th>Sl. No.</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>DOB (YYYY-MM-DD)</th>
+        </tr>
         {students.map((s, i) => (
           <Student index={i} firstName={s.firstName} lastName={s.lastName} dob={s.dob} key={s.id} />
         ))}

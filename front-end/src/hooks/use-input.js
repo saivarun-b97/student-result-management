@@ -10,11 +10,7 @@ export default function useInput(validationFunction) {
 
     setValue(updatedValue.toUpperCase());
 
-    const isValidUpdatedValue = validationFunction(updatedValue);
-
-    setIsValid((state) => {
-      if (state !== isValidUpdatedValue) state = isValidUpdatedValue;
-    });
+    setIsValid(validationFunction(updatedValue));
   };
 
   const onBlur = () => {

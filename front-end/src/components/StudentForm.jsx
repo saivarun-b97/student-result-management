@@ -4,7 +4,7 @@ import useInput from "../hooks/use-input";
 import "../index.css";
 import { addResource } from "../store/actions";
 
-export default function StudentForm(props) {
+export default function StudentForm() {
   const dispatch = useDispatch();
 
   const {
@@ -33,15 +33,13 @@ export default function StudentForm(props) {
     isTouched: dobIsTouched,
     onChange: onDobChange,
     onBlur: onDobBlur,
-  } = useInput((value) => {
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
-    if (Date.parse(value) > new Date().getTime()) return false;
-
-    return true;
-  });
+  } = useInput(
+    (value) => /^\d{4}-\d{2}-\d{2}$/.test(value) && Date.parse(value) < new Date().getTime()
+  );
 
   const submitFormHandler = (event) => {
     event.preventDefault();
+
     dispatch(
       addResource(RESOURCE.STUDENT, {
         firstName: firstNameValue,
@@ -53,39 +51,38 @@ export default function StudentForm(props) {
 
   return (
     <>
-      <h1>Add New Student</h1>
+      <h3>Add New Student</h3>
       <form onSubmit={submitFormHandler}>
-        <div>
-          <label>First Name</label>
-          <input
-            type={"text"}
-            value={firstNameValue}
-            placeholder="First Name"
-            onBlur={onFirstNameBlur}
-            onChange={onFirstNameChange}
-          ></input>
-        </div>
-        <div>
-          <label>Last Name</label>
-          <input
-            type={"text"}
-            value={lastNameValue}
-            placeholder="Last Name"
-            onBlur={onLastNameBlur}
-            onChange={onLastNameChange}
-          ></input>
-        </div>
-        <div>
-          <label>Date Of Birth</label>
-          <input
-            type={"text"}
-            placeholder="YYYY-MM-DD"
-            value={dobValue}
-            onBlur={onDobBlur}
-            onChange={onDobChange}
-          ></input>
-        </div>
-        <button type="submit">Submit</button>
+        <label>First Name:</label>
+        <input
+          type={"text"}
+          value={firstNameValue}
+          placeholder="First Name"
+          onBlur={onFirstNameBlur}
+          onChange={onFirstNameChange}
+          className={firstNameIsTouched && !firstNameIsValid ? "error" : ""}
+        ></input>
+        <label>Last Name:</label>
+        <input
+          type={"text"}
+          value={lastNameValue}
+          placeholder="Last Name"
+          onBlur={onLastNameBlur}
+          onChange={onLastNameChange}
+          className={lastNameIsTouched && !lastNameIsValid ? "error" : ""}
+        ></input>
+        <label>Date of Birth:</label>
+        <input
+          type={"text"}
+          placeholder="YYYY-MM-DD"
+          value={dobValue}
+          onBlur={onDobBlur}
+          onChange={onDobChange}
+          className={dobIsTouched && !dobIsValid ? "error" : ""}
+        ></input>
+        <button type="submit" disabled={!(firstNameIsValid && lastNameIsValid && dobIsValid)}>
+          SAVE
+        </button>
       </form>
     </>
   );

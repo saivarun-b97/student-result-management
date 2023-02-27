@@ -11,6 +11,12 @@ export default function ResultPage() {
       <ResultForm />
       <h3>List of Results</h3>
       <table>
+        <tr>
+          <th>Sl. No.</th>
+          <th>Student Name</th>
+          <th>Course Name</th>
+          <th>Score</th>
+        </tr>
         {results.map((r, i) => (
           <Result
             key={r.id}
