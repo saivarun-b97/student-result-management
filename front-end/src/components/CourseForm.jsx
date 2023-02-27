@@ -31,6 +31,7 @@ export default function CourseForm() {
         <input
           type={"text"}
           value={courseNameValue}
+          placeholder="MATHEMATICS"
           onBlur={onCourseNameBlur}
           onChange={onCourseNameChange}
           className={courseNameIsTouched && !courseNameIsValid ? "error" : ""}

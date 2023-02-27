@@ -38,7 +38,8 @@ nav li {
   padding: 5px;
 }
 
-form button {
+form button,
+.error-actions button {
   border: 2px solid #333;
   padding: 9px 20px;
   color: darkcyan;
@@ -47,12 +48,14 @@ form button {
 }
 
 nav li:hover,
-form button:hover {
+form button:hover,
+.error-actions button:hover {
   background-color: #ccc;
 }
 
 nav li:active,
-form button:active {
+form button:active,
+.error-actions button:active {
   background-color: #333;
 }
 
@@ -140,14 +143,12 @@ th {
   left: 50%;
 }
 
-/* Error */
-
 .error-backdrop {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   z-index: 10;
   background: rgba(0, 0, 0, 0.75);
 }
@@ -162,23 +163,26 @@ th {
 }
 
 .error-header {
-  background: #4f005f;
+  position: absolute;
+  background: #333;
   padding: 1rem;
 }
 
 .error-header h2 {
   margin: 0;
-  color: white;
+  color: #ed4337;
 }
 
 .error-content {
-  padding: 1rem;
+  margin-top: 65px;
+  padding: 10px;
+  text-align: center;
+  font-size: larger;
+  background-color: #f2f2f2;
 }
 
 .error-actions {
-  padding: 1rem;
-  display: flex;
-  justify-content: flex-end;
+  margin: 5% 45%;
 }
 
 @media (min-width: 768px) {

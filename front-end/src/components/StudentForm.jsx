@@ -57,7 +57,7 @@ export default function StudentForm() {
         <input
           type={"text"}
           value={firstNameValue}
-          placeholder="First Name"
+          placeholder="JOHN"
           onBlur={onFirstNameBlur}
           onChange={onFirstNameChange}
           className={firstNameIsTouched && !firstNameIsValid ? "error" : ""}
@@ -66,7 +66,7 @@ export default function StudentForm() {
         <input
           type={"text"}
           value={lastNameValue}
-          placeholder="Last Name"
+          placeholder="DOE"
           onBlur={onLastNameBlur}
           onChange={onLastNameChange}
           className={lastNameIsTouched && !lastNameIsValid ? "error" : ""}
@@ -74,8 +74,8 @@ export default function StudentForm() {
         <label>Date of Birth:</label>
         <input
           type={"text"}
-          placeholder="YYYY-MM-DD"
           value={dobValue}
+          placeholder="YYYY-MM-DD"
           onBlur={onDobBlur}
           onChange={onDobChange}
           className={dobIsTouched && !dobIsValid ? "error" : ""}
