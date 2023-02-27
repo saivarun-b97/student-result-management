@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import CoursePage from "./pages/CoursePage";
-import ErrorPage from "./pages/ErrorPage";
 import HomePage from "./pages/HomePage";
+import NotFoundPage from "./pages/NotFoundPage";
 import ResultPage from "./pages/ResultPage";
 import RootPage from "./pages/RootPage";
 import StudentPage from "./pages/StudentPage";
@@ -13,7 +13,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <RootPage />,
-    errorElement: <ErrorPage />,
+    errorElement: <NotFoundPage />,
     children: [
       { path: "/", element: <HomePage /> },
       { path: "/student", element: <StudentPage /> },

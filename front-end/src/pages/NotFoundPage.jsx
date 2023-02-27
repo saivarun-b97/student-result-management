@@ -1,7 +1,7 @@
 import NavigationBar from "../components/NavigationBar";
 import "../index.css";
 
-export default function ErrorPage() {
+export default function NotFoundPage() {
   return (
     <>
       <header>
@@ -9,7 +9,7 @@ export default function ErrorPage() {
         <NavigationBar />
       </header>
       <main>
-        <div className="error-page">
+        <div className="not-found-page">
           Sorry! <br />
           Page Not Found
         </div>
