@@ -1,9 +1,12 @@
+import "../index.css";
+
 export default function Course(props) {
-  const { name } = props;
+  const { index, name } = props;
 
   return (
-    <>
-      <div>{name}</div>
-    </>
+    <tr>
+      <td>{index + 1}</td>
+      <td>{name}</td>
+    </tr>
   );
 }

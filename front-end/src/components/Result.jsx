@@ -1,11 +1,14 @@
+import "../index.css";
+
 export default function Result(props) {
-  const { studentName, courseName, score } = props;
+  const { index, studentName, courseName, score } = props;
 
   return (
-    <>
-      <div>{studentName}</div>
-      <div>{courseName}</div>
-      <div>{score}</div>
-    </>
+    <tr>
+      <td>{index + 1}</td>
+      <td>{studentName}</td>
+      <td>{courseName}</td>
+      <td>{score}</td>
+    </tr>
   );
 }

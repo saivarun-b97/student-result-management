@@ -1,9 +1,10 @@
-import SideNav from "../components/SideNav";
+import NavigationBar from "../components/NavigationBar";
+import "../index.css";
 
 export default function ErrorPage() {
   return (
     <>
-      <SideNav />
+      <NavigationBar />
       <main>
         <h1>Sorry! page not found</h1>
       </main>

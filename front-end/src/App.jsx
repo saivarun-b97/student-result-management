@@ -7,9 +7,7 @@ import HomePage from "./pages/HomePage";
 import ResultPage from "./pages/ResultPage";
 import RootPage from "./pages/RootPage";
 import StudentPage from "./pages/StudentPage";
-import { loadCourses } from "./store/course-actions";
-import { loadResults } from "./store/result-actions";
-import { loadStudents } from "./store/student-actions";
+import { loadResource } from "./store/actions";
 
 const router = createBrowserRouter([
   {
@@ -33,9 +31,7 @@ export default function App() {
   useEffect(() => {
     if (initialLoad) {
       initialLoad = false;
-      dispatch(loadCourses());
-      dispatch(loadStudents());
-      dispatch(loadResults());
+      dispatch(loadResource());
     }
   }, [dispatch]);
 

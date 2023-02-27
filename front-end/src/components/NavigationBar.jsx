@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import classes from "./SideNav.module.css";
+import "../index.css";
 
-function SideNav() {
+export default function NavigationBar() {
   return (
-    <header className={classes.header}>
+    <header className="header">
       <nav>
-        <ul className={classes.list}>
+        <ul className="list">
           <li>
             <Link to="/course">Course Page</Link>
           </li>
@@ -20,5 +20,3 @@ function SideNav() {
     </header>
   );
 }
-
-export default SideNav;
