@@ -60,6 +60,7 @@ export default function ResultForm() {
           onChange={onStudentIdChange}
           className={studentIdIsTouched && !studentIdIsValid ? "error" : ""}
         >
+          <option value="">Please choose an option</option>
           {students.map((s, i) => (
             <option key={i} value={s.id}>
               {s.firstName} {s.lastName}
@@ -73,6 +74,7 @@ export default function ResultForm() {
           onChange={onCourseIdChange}
           className={courseIdIsTouched && !courseIdIsValid ? "error" : ""}
         >
+          <option value="">Please choose an option</option>
           {courses.map((c, i) => (
             <option key={i} value={c.id}>
               {c.name}
@@ -86,6 +88,7 @@ export default function ResultForm() {
           onChange={onScoreChange}
           className={scoreIsTouched && !scoreIsValid ? "error" : ""}
         >
+          <option value="">Please choose an option</option>
           {scores.map((s, i) => (
             <option key={i} value={s}>
               {s}
