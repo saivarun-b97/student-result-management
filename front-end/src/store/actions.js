@@ -1,5 +1,6 @@
 import { BE_BASE_URL, RESOURCE } from "../constants";
 import { courseActions } from "./course-slice";
+import { errorActions } from "./error-slice";
 import { resultActions } from "./result-slice";
 import { studentActions } from "./student-slice";
 
@@ -9,8 +10,16 @@ export function loadResources() {
       Object.values(RESOURCE).map((r) => fetch(`${BE_BASE_URL}/${r}`))
     );
 
-    if (!(getCourseRes.ok && getStudentRes.ok && getResultRes.ok))
-      throw new Error(`Could not retrieve all resources`);
+    if (!(getCourseRes.ok && getStudentRes.ok && getResultRes.ok)) {
+      dispatch(
+        errorActions.caught({
+          errorTitle: "FETCH ERROR!",
+          errorMessage: "Could not load all resources",
+        })
+      );
+
+      return;
+    }
 
     const [courses, students, results] = await Promise.all([
       getCourseRes.json(),
@@ -37,7 +46,18 @@ export function addResource(resource, resourceBody) {
       },
     });
 
-    if (!addResourceRes.ok) throw new Error(`Could not add ${resource}`);
+    if (!addResourceRes.ok) {
+      const errorMessage = await addResourceRes.text();
+
+      dispatch(
+        errorActions.caught({
+          errorTitle: "UPLOAD ERROR!",
+          errorMessage,
+        })
+      );
+
+      return;
+    }
 
     const addedResource = await addResourceRes.json();
 

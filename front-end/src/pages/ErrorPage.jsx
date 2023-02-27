@@ -9,7 +9,10 @@ export default function ErrorPage() {
         <NavigationBar />
       </header>
       <main>
-        <div className="error-page">Sorry! Page Not Found</div>
+        <div className="error-page">
+          Sorry! <br />
+          Page Not Found
+        </div>
       </main>
     </>
   );
