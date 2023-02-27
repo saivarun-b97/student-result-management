@@ -21,10 +21,10 @@ Installation is documented for MacOS machine with M1.
   curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
   ```
 
-- [Node](https://nodejs.org/en/)
+- [Git](https://git-scm.com/), [Node](https://nodejs.org/en/)
 
   ```bash
-  brew install node
+  brew install git node
   ```
 
 - [Docker](https://docs.docker.com/desktop/mac/install/)
