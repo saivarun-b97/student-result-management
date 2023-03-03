@@ -1,5 +1,4 @@
 import NavigationBar from "../components/NavigationBar";
-import "../index.css";
 
 export default function NotFoundPage() {
   return (

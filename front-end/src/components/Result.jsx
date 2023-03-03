@@ -1,5 +1,3 @@
-import "../index.css";
-
 export default function Result(props) {
   const { index, studentName, courseName, score } = props;
 

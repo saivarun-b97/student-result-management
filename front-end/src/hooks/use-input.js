@@ -13,8 +13,22 @@ export default function useInput(validationFunction) {
     setIsValid(validationFunction(updatedValue));
   };
 
+  const onSelect = (event) => {
+    const selectedOption = event.target.value;
+
+    setValue(selectedOption);
+
+    setIsValid(validationFunction(selectedOption));
+  };
+
   const onBlur = () => {
     if (!isTouched) setIsTouched(true);
+  };
+
+  const reset = () => {
+    setValue("");
+    setIsTouched(false);
+    setIsValid(false);
   };
 
   return {
@@ -22,6 +36,8 @@ export default function useInput(validationFunction) {
     isTouched,
     isValid,
     onChange,
+    onSelect,
     onBlur,
+    reset,
   };
 }

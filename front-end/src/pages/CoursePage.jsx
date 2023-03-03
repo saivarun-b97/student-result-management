@@ -1,16 +1,15 @@
 import { useSelector } from "react-redux";
+import Alert from "../components/Alert";
 import Course from "../components/Course";
 import CourseForm from "../components/CourseForm";
-import Error from "../components/Error";
-import "../index.css";
 
 export default function CoursePage() {
   const { items: courses } = useSelector((store) => store.course);
-  const caughtError = useSelector((state) => state.error.caughtError);
+  const isAlerted = useSelector((state) => state.alert.isAlerted);
 
   return (
     <>
-      {caughtError && <Error />}
+      {isAlerted && <Alert />}
       <CourseForm />
       <h3>List of Courses</h3>
       <table>

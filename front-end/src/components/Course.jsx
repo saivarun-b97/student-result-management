@@ -1,5 +1,3 @@
-import "../index.css";
-
 export default function Course(props) {
   const { index, name } = props;
 

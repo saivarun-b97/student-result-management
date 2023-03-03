@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
+import alertSlice from "./alert-slice";
 import courseSlice from "./course-slice";
-import errorSlice from "./error-slice";
 import resultSlice from "./result-slice";
 import studentSlice from "./student-slice";
 
@@ -9,7 +9,7 @@ const store = configureStore({
     course: courseSlice.reducer,
     student: studentSlice.reducer,
     result: resultSlice.reducer,
-    error: errorSlice.reducer,
+    alert: alertSlice.reducer,
   },
 });
 

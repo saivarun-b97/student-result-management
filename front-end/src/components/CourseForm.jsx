@@ -1,7 +1,6 @@
 import { useDispatch } from "react-redux";
 import { RESOURCE } from "../constants";
 import useInput from "../hooks/use-input";
-import "../index.css";
 import { addResource } from "../store/actions";
 
 export default function CourseForm() {
@@ -13,14 +12,15 @@ export default function CourseForm() {
     isTouched: courseNameIsTouched,
     onChange: onCourseNameChange,
     onBlur: onCourseNameBlur,
-  } = useInput((value) => {
-    return value.trim().length > 2;
-  });
+    reset: resetCourseName,
+  } = useInput((value) => value.trim().length > 2);
 
   const formSubmitHandler = (event) => {
     event.preventDefault();
 
     dispatch(addResource(RESOURCE.COURSE, { name: courseNameValue }));
+
+    resetCourseName();
   };
 
   return (

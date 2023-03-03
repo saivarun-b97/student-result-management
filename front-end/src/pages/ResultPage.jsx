@@ -1,16 +1,15 @@
 import { useSelector } from "react-redux";
-import Error from "../components/Error";
+import Alert from "../components/Alert";
 import Result from "../components/Result";
 import ResultForm from "../components/ResultForm";
-import "../index.css";
 
 export default function ResultPage() {
   const results = useSelector((state) => state.result.items);
-  const caughtError = useSelector((state) => state.error.caughtError);
+  const isAlerted = useSelector((state) => state.alert.isAlerted);
 
   return (
     <>
-      {caughtError && <Error />}
+      {isAlerted && <Alert />}
       <ResultForm />
       <h3>List of Results</h3>
       <table>

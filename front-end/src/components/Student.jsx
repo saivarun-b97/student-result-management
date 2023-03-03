@@ -1,5 +1,3 @@
-import "../index.css";
-
 export default function Student(props) {
   const { index, firstName, lastName, dob } = props;
 

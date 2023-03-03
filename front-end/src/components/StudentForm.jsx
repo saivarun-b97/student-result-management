@@ -1,7 +1,6 @@
 import { useDispatch } from "react-redux";
 import { RESOURCE } from "../constants";
 import useInput from "../hooks/use-input";
-import "../index.css";
 import { addResource } from "../store/actions";
 
 export default function StudentForm() {
@@ -13,9 +12,8 @@ export default function StudentForm() {
     isTouched: firstNameIsTouched,
     onChange: onFirstNameChange,
     onBlur: onFirstNameBlur,
-  } = useInput((value) => {
-    return value.trim().length > 2;
-  });
+    reset: resetFirstName,
+  } = useInput((value) => value.trim().length > 2);
 
   const {
     value: lastNameValue,
@@ -23,9 +21,8 @@ export default function StudentForm() {
     isTouched: lastNameIsTouched,
     onChange: onLastNameChange,
     onBlur: onLastNameBlur,
-  } = useInput((value) => {
-    return value.trim().length > 0;
-  });
+    reset: resetLastName,
+  } = useInput((value) => value.trim().length > 0);
 
   const {
     value: dobValue,
@@ -33,9 +30,23 @@ export default function StudentForm() {
     isTouched: dobIsTouched,
     onChange: onDobChange,
     onBlur: onDobBlur,
-  } = useInput(
-    (value) => /^\d{4}-\d{2}-\d{2}$/.test(value) && Date.parse(value) < new Date().getTime()
-  );
+    reset: resetDob,
+  } = useInput((value) => {
+    const dobValue = `${value}T00:00:00`; // note: formatting date string to be able to parse date correctly
+    const isValidDate =
+      /^\d{4}-\d{2}-\d{2}$/.test(value) && Date.parse(dobValue) < new Date().getTime();
+
+    if (!isValidDate) return false;
+
+    const dob = new Date(dobValue);
+    const now = new Date();
+    const mnthDiff = now.getMonth() - dob.getMonth();
+    let yrsDiff = now.getFullYear() - dob.getFullYear();
+
+    if (mnthDiff < 0 || (mnthDiff === 0 && now.getDate() < dob.getDate())) yrsDiff--;
+
+    return yrsDiff > 9;
+  });
 
   const submitFormHandler = (event) => {
     event.preventDefault();
@@ -47,6 +58,10 @@ export default function StudentForm() {
         dob: dobValue,
       })
     );
+
+    resetFirstName();
+    resetLastName();
+    resetDob();
   };
 
   return (

@@ -68,6 +68,16 @@ export default class StudentService {
     if (Date.parse(dob) > new Date().getTime())
       return this.res.status(409).send("DOB has to be in past");
 
+    const dobDate = new Date(dob);
+    const curDate = new Date();
+    const mnthDiff = curDate.getMonth() - dobDate.getMonth();
+    const yearDiff = curDate.getFullYear() - dobDate.getFullYear();
+    const age =
+      mnthDiff < 0 || (mnthDiff === 0 && curDate.getDate() < dobDate.getDate())
+        ? yearDiff - 1
+        : yearDiff;
+    if (age < 10) return this.res.status(409).send("Student must be older than 10 years");
+
     // Transform incoming data
     const student = Student.create({
       firstName: firstName.toUpperCase(),

@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RESOURCE } from "../constants";
 import useInput from "../hooks/use-input";
-import "../index.css";
 import { addResource } from "../store/actions";
 
 export default function ResultForm() {
@@ -17,24 +16,27 @@ export default function ResultForm() {
     value: courseIdValue,
     isValid: courseIdIsValid,
     isTouched: courseIdIsTouched,
-    onChange: onCourseIdChange,
+    onSelect: onCourseIdSelect,
     onBlur: onCourseIdBlur,
+    reset: resetCourseId,
   } = useInput(validationRule);
 
   const {
     value: studentIdValue,
     isValid: studentIdIsValid,
     isTouched: studentIdIsTouched,
-    onChange: onStudentIdChange,
+    onSelect: onStudentIdSelect,
     onBlur: onStudentIdBlur,
+    reset: resetStudentId,
   } = useInput(validationRule);
 
   const {
     value: scoreValue,
     isValid: scoreIsValid,
     isTouched: scoreIsTouched,
-    onChange: onScoreChange,
+    onSelect: onScoreSelect,
     onBlur: onScoreBlur,
+    reset: resetScore,
   } = useInput(validationRule);
 
   const formSubmitHandler = (event) => {
@@ -47,6 +49,10 @@ export default function ResultForm() {
         score: scoreValue,
       })
     );
+
+    resetCourseId();
+    resetStudentId();
+    resetScore();
   };
 
   return (
@@ -56,8 +62,9 @@ export default function ResultForm() {
         <label>Student:</label>
         <select
           name="studentId"
+          value={studentIdValue}
           onBlur={onStudentIdBlur}
-          onChange={onStudentIdChange}
+          onChange={onStudentIdSelect}
           className={studentIdIsTouched && !studentIdIsValid ? "error" : ""}
         >
           <option value="">Please choose an option</option>
@@ -70,8 +77,9 @@ export default function ResultForm() {
         <label>Course:</label>
         <select
           name="courseId"
+          value={courseIdValue}
           onBlur={onCourseIdBlur}
-          onChange={onCourseIdChange}
+          onChange={onCourseIdSelect}
           className={courseIdIsTouched && !courseIdIsValid ? "error" : ""}
         >
           <option value="">Please choose an option</option>
@@ -84,8 +92,9 @@ export default function ResultForm() {
         <label>Score:</label>
         <select
           name="score"
+          value={scoreValue}
           onBlur={onScoreBlur}
-          onChange={onScoreChange}
+          onChange={onScoreSelect}
           className={scoreIsTouched && !scoreIsValid ? "error" : ""}
         >
           <option value="">Please choose an option</option>

@@ -1,6 +1,6 @@
 import { BE_BASE_URL, RESOURCE } from "../constants";
+import { alertActions } from "./alert-slice";
 import { courseActions } from "./course-slice";
-import { errorActions } from "./error-slice";
 import { resultActions } from "./result-slice";
 import { studentActions } from "./student-slice";
 
@@ -12,9 +12,10 @@ export function loadResources() {
 
     if (!(getCourseRes.ok && getStudentRes.ok && getResultRes.ok)) {
       dispatch(
-        errorActions.caught({
-          errorTitle: "FETCH ERROR!",
-          errorMessage: "Could not load all resources",
+        alertActions.alert({
+          isError: true,
+          alertTitle: "OOPS!",
+          alertMessage: "Could not load all resources",
         })
       );
 
@@ -47,12 +48,13 @@ export function addResource(resource, resourceBody) {
     });
 
     if (!addResourceRes.ok) {
-      const errorMessage = await addResourceRes.text();
+      const alertMessage = await addResourceRes.text();
 
       dispatch(
-        errorActions.caught({
-          errorTitle: "UPLOAD ERROR!",
-          errorMessage,
+        alertActions.alert({
+          isError: true,
+          alertTitle: "OOPS!",
+          alertMessage,
         })
       );
 
@@ -74,5 +76,12 @@ export function addResource(resource, resourceBody) {
       default:
         break;
     }
+
+    dispatch(
+      alertActions.alert({
+        alertTitle: "WELL DONE!",
+        alertMessage: `Successfully added new ${resource}`,
+      })
+    );
   };
 }
