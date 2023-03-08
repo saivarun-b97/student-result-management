@@ -1,7 +1,12 @@
-body {
+* {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #fff;
+  color: #333;
 }
 
 header {
@@ -16,9 +21,9 @@ header {
 }
 
 nav {
-  background-color: #f2f2f2;
-  padding: 20px;
-  width: 200px;
+  background-color: #333;
+  padding: 0px;
+  width: 250px;
   height: 100%;
   top: 66px;
   left: 0;
@@ -27,52 +32,47 @@ nav {
 
 nav ul {
   list-style: none;
-  padding: 0;
-  margin: 50px 0 0 0;
-}
-
-nav li {
-  margin-bottom: 10px;
-  border: 2.5px solid #333;
-  border-radius: 10px;
-  padding: 5px;
+  padding: 0px;
 }
 
 form button,
 .alert-actions button {
   border: 2px solid #333;
-  padding: 9px 20px;
-  color: darkcyan;
+  padding: 9.75px 20px;
+  background-color: #333;
+  color: #fff;
   font-weight: bold;
   cursor: pointer;
+  transition-duration: 0.4s;
 }
 
-nav li:hover,
+nav li a:hover,
 form button:hover,
 .alert-actions button:hover {
-  background-color: #ccc;
+  background-color: #fff;
+  color: #333;
+  font-weight: bolder;
+  transition-duration: 0.4s;
+  box-shadow: 0 12px 16px 0 #555;
 }
 
-nav li:active,
+nav li a:active,
 form button:active,
 .alert-actions button:active {
   background-color: #333;
+  color: #fff;
 }
 
 nav li a {
   text-decoration: none;
-  color: darkcyan;
+  color: #fff;
   display: block;
-}
-
-nav li a:active,
-form button:active {
-  color: #ccc;
+  padding: 20px;
 }
 
 main {
   float: right;
-  width: 80%;
+  width: calc(100vw - 250px);
   margin-top: 65px;
 }
 
@@ -102,13 +102,14 @@ form select {
   margin: 5px 10px 5px 0;
   padding: 10px;
   background-color: #fff;
-  border: 1px solid #ccc;
+  border: 2px solid #ccc;
 }
 
 form button:disabled {
   background: #999;
   color: #555;
   cursor: not-allowed;
+  box-shadow: none !important;
 }
 
 table {
@@ -131,7 +132,7 @@ th {
 }
 
 .error {
-  border: 1px solid red !important;
+  border: 2px solid red !important;
 }
 
 .not-found-page,
@@ -180,7 +181,7 @@ th {
 
 .alert-content {
   margin-top: 65px;
-  padding: 10px;
+  padding: 40px 10px;
   text-align: center;
   font-size: larger;
   background-color: #f2f2f2;

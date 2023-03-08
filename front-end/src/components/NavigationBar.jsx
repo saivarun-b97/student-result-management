@@ -5,6 +5,9 @@ export default function NavigationBar() {
     <nav>
       <ul>
         <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
           <Link to="/course">Course</Link>
         </li>
         <li>
